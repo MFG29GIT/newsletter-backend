@@ -17,10 +17,10 @@ app.get("/", (c) => {
 });
 
 // to run with node
-// serve({
-//   fetch: app.fetch,
-//   port: 8080,
-// });
+serve({
+  fetch: app.fetch,
+  port: 8080,
+});
 
 export default {
   fetch: app.fetch,
