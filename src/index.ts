@@ -6,6 +6,8 @@ import { serve } from "@hono/node-server";
 import * as dotenv from "dotenv";
 dotenv.config();
 
+const PORT = 8080;
+
 const app = new Hono();
 
 // connect routes
@@ -17,12 +19,15 @@ app.get("/", (c) => {
 });
 
 // to run with node
-serve({
-  fetch: app.fetch,
-  port: 8080,
-});
+if (!process.versions.bun) {
+  console.log(`Server running on ${PORT}`);
+  serve({
+    fetch: app.fetch,
+    port: PORT,
+  });
+}
 
 export default {
   fetch: app.fetch,
-  port: 8080,
+  port: PORT,
 };
